@@ -1,0 +1,89 @@
+
+
+/* Remove default browser spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(-45deg,
+        #ff9a9e,
+        #fad0c4,
+        #84fab0,
+        #8fd3f4);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+/* Form Container */
+.container {
+    background-color: white;
+    padding: 30px;
+    width: 380px;
+
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+
+    text-align: left;
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4facfe;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #00c6ff;
+}
+
+/* Bottom text */
+p {
+    text-align: center;
+    margin-top: 15px;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skill-Swap Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+    function validateregistration() {
+        var name = document.getElementById("name");
+        if (name.value.trim() === "") {
+            alert("Please enter name");
+            return false;
+        }
+
+        var password = document.getElementById("pswd");
+        var confirmpassword = document.getElementById("confpassword");
+
+        if (password.value === "" || confirmpassword.value === "") {
+            alert("Please fill password fields");
+            return false;
+        }
+
+        if (password.value.length < 8) {
+            alert("Password should contain at least 8 characters");
+            return false;
+        }
+
+        if (password.value !== confirmpassword.value) {
+            alert("Passwords do not match");
+            return false;
+        }
+
+        var email = document.getElementById("email");
+        if (email.value === "") {
+            alert("Enter your email address");
+            return false;
+        }
+
+        var skill_offer = document.getElementById("skill_offer");
+        var skill_want  = document.getElementById("skill_want");
+
+        if (skill_offer.value === "") {
+            alert("Enter the skill you offer");
+            return false;
+        }
+
+        if (skill_want.value === "") {
+            alert("Enter the skill you want");
+            return false;
+        }
+
+        // FIX: also save userName so login can retrieve it
+        localStorage.setItem("userName", name.value);
+        localStorage.setItem("userEmail", email.value);
+        localStorage.setItem("userPassword", password.value);
+        localStorage.setItem("userOffer", skill_offer.value);
+        localStorage.setItem("userWant", skill_want.value);
+
+        return true; // allow form POST to dashboard.php
+    }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>Skill Swap - Registration Form</h1>
+    <form onsubmit="return validateregistration()" action="dashboard.php" method="POST">
+        <label for="name">User Name:</label>
+        <input type="text" id="name" name="name" maxlength="15" required autocomplete="off">
+
+        <label for="email">Email ID:</label>
+        <input type="email" id="email" name="email" placeholder="user@gmail.com" required autocomplete="off">
+
+        <label for="pswd">Password:</label>
+        <input type="password" id="pswd" name="password" placeholder="********" required autocomplete="new-password">
+
+        <label for="confpassword">Confirm Password:</label>
+        <input type="password" id="confpassword" name="confpassword" required>
+
+        <label for="skill_offer">Skill You Offer:</label>
+        <input type="text" id="skill_offer" name="skill_offer" required>
+
+        <label for="skill_want">Skill You Want:</label>
+        <input type="text" id="skill_want" name="skill_want" required>
+
+        <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Login Here</a></p>
+</div>
+</body>
+</html>
