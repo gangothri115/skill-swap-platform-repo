@@ -1,0 +1,94 @@
+/* 2026 Modern Light Palette */
+:root {
+    --bg-main: #f8fafc;          /* Soft Off-White */
+    --card-white: #ffffff;      /* Pure White */
+    --primary-blue: #4A90E2;    /* Brand Blue */
+    --accent-light: #e0f2fe;    /* Very Light Pastel Blue */
+    --text-deep: #1e293b;       /* Dark Navy for readability */
+    --text-soft: #64748b;       /* Muted Slate Grey */
+    --border-subtle: #f1f5f9;   /* Almost invisible borders */
+    --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+body { 
+    font-family: 'Inter', 'Segoe UI', sans-serif; 
+    margin: 0; 
+    background-color: var(--bg-main); 
+    color: var(--text-deep);
+}
+
+/* Navbar: Clean and Floating */
+.navbar { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 15px 10%; 
+    background: var(--card-white); 
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.logo { font-size: 24px; font-weight: 800; color: var(--primary-blue); }
+
+.nav-links a { 
+    margin-left: 20px; 
+    text-decoration: none; 
+    color: var(--text-soft); 
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover { color: var(--primary-blue); }
+
+/* Hero Section: High Contrast but Soft */
+.hero { 
+    text-align: center; 
+    padding: 100px 10%; 
+    background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%); 
+}
+
+.hero h1 { font-size: 3.5rem; color: var(--text-deep); margin-bottom: 15px; }
+.highlight { color: var(--primary-blue); }
+.hero p { color: var(--text-soft); font-size: 1.1rem; max-width: 600px; margin: 0 auto 30px; }
+
+/* Buttons */
+.btn-main { 
+    background: var(--primary-blue); 
+    color: white; 
+    padding: 14px 30px; 
+    border-radius: 50px; 
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(74, 144, 226, 0.3);
+}
+
+.btn-sec { 
+    color: var(--primary-blue); 
+    background: var(--accent-light);
+    padding: 14px 30px; 
+    border-radius: 50px; 
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+/* Info Section: Card Layout */
+.info-section { padding: 80px 10%; background: var(--card-white); }
+
+.steps { display: flex; gap: 20px; margin-top: 40px; }
+
+.step { 
+    flex: 1; 
+    padding: 35px; 
+    background: var(--bg-main); 
+    border-radius: 20px; 
+    border: 1px solid var(--border-subtle);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step:hover { 
+    transform: translateY(-5px); 
+    background: var(--card-white);
+    box-shadow: var(--shadow-soft);
+}
+
+.step h3 { color: var(--primary-blue); margin-bottom: 10px; }
+.step p { color: var(--text-soft); font-size: 0.95rem; }
