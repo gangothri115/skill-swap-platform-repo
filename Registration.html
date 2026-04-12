@@ -5,64 +5,52 @@
     <link rel="stylesheet" href="style.css">
     <script>
     function validateregistration() {
-        var name = document.getElementById("name");
-        if (name.value.trim() === "") {
+
+        var name = document.getElementById("name").value.trim();
+        var email = document.getElementById("email").value.trim();
+        var password = document.getElementById("pswd").value;
+        var confirmpassword = document.getElementById("confpassword").value;
+        var skill_offer = document.getElementById("skill_offer").value.trim();
+        var skill_want = document.getElementById("skill_want").value.trim();
+
+        if(name === ""){
             alert("Please enter name");
             return false;
         }
 
-        var password = document.getElementById("pswd");
-        var confirmpassword = document.getElementById("confpassword");
-
-        if (password.value === "" || confirmpassword.value === "") {
-            alert("Please fill password fields");
-            return false;
-        }
-
-        if (password.value.length < 8) {
-            alert("Password should contain at least 8 characters");
-            return false;
-        }
-
-        if (password.value !== confirmpassword.value) {
-            alert("Passwords do not match");
-            return false;
-        }
-
-        var email = document.getElementById("email");
-        if (email.value === "") {
+        if(email === ""){
             alert("Enter your email address");
             return false;
         }
 
-        var skill_offer = document.getElementById("skill_offer");
-        var skill_want  = document.getElementById("skill_want");
+        if(password.length < 8){
+            alert("Password must be at least 8 characters");
+            return false;
+        }
 
-        if (skill_offer.value === "") {
+        if(password !== confirmpassword){
+            alert("Passwords do not match");
+            return false;
+        }
+
+        if(skill_offer === ""){
             alert("Enter the skill you offer");
             return false;
         }
 
-        if (skill_want.value === "") {
+        if(skill_want === ""){
             alert("Enter the skill you want");
             return false;
         }
 
-        // FIX: also save userName so login can retrieve it
-        localStorage.setItem("userName", name.value);
-        localStorage.setItem("userEmail", email.value);
-        localStorage.setItem("userPassword", password.value);
-        localStorage.setItem("userOffer", skill_offer.value);
-        localStorage.setItem("userWant", skill_want.value);
-
-        return true; // allow form POST to dashboard.php
+        return true;
     }
     </script>
 </head>
 <body>
 <div class="container">
     <h1>Skill Swap - Registration Form</h1>
-    <form onsubmit="return validateregistration()" action="dashboard.php" method="POST">
+    <form onsubmit="return validateregistration()" action="backend/register.php" method="POST">
         <label for="name">User Name:</label>
         <input type="text" id="name" name="name" maxlength="15" required autocomplete="off">
 

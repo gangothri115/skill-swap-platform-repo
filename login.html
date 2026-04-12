@@ -4,60 +4,44 @@
     <title>Skill Swap - Login</title>
     <link rel="stylesheet" href="style.css">
     <script>
-    function validateLogin() {
-        var email = document.getElementById("loginemail");
-        var password = document.getElementById("pswd");
+    function validateLogin(){
 
-        if (email.value === "" || password.value === "") {
+        var email = document.getElementById("loginemail").value.trim();
+        var password = document.getElementById("pswd").value.trim();
+
+        if(email === "" || password === ""){
             alert("Please enter all login details");
             return false;
         }
 
-        var storedEmail = localStorage.getItem("userEmail");
-        var storedPassword = localStorage.getItem("userPassword");
-
-        if (email.value !== storedEmail || password.value !== storedPassword) {
-            alert("Incorrect email or password!");
+        if(password.length < 8){
+            alert("Password must be at least 8 characters");
             return false;
         }
 
-        alert("Login Successful ✅");
-
-        // FIX: Submit a hidden form with POST data so dashboard.php gets the skills
-        var offer = localStorage.getItem("userOffer");
-        var want  = localStorage.getItem("userWant");
-        var name  = localStorage.getItem("userName");
-
-        var form = document.createElement("form");
-        form.method = "POST";
-        form.action = "dashboard.php";
-
-        var fields = { name: name, email: email.value, skill_offer: offer, skill_want: want };
-        for (var key in fields) {
-            var input = document.createElement("input");
-            input.type  = "hidden";
-            input.name  = key;
-            input.value = fields[key];
-            form.appendChild(input);
-        }
-
-        document.body.appendChild(form);
-        form.submit();
-        return false;
+        return true;
     }
     </script>
 </head>
 <body>
     <div class="container" align="center">
         <h2>Skill Swap Login</h2><br><br>
-        <form onsubmit="return validateLogin()" autocomplete="off">
-            <label for="loginemail">Enter email:</label>
-            <input type="email" id="loginemail" placeholder="user@gmail.com" name="loginemail" autocomplete="off" required><br><br>
-            <label for="pswd">Enter your password:</label>
-            <input type="password" id="pswd" placeholder="password" required autocomplete="new-password"><br><br>
-            <button type="submit">Login</button><br><br>
-        </form>
-        <p>Don't have an account? <a href="Registration.html">Register Here</a></p>
+        <form onsubmit="return validateLogin()" autocomplete="off" action="backend/login.php" method="POST">
+
+        <label for="loginemail">Enter email:</label>
+        <input type="email" id="loginemail" name="email" placeholder="user@gmail.com" autocomplete="off" required>
+
+        <br><br>
+
+        <label for="pswd">Enter your password:</label>
+        <input type="password" id="pswd" name="password" placeholder="password" required autocomplete="new-password">
+
+        <br><br>
+
+        <button type="submit">Login</button>
+
+    </form>
+    <p>Don't have an account? <a href="Registration.html">Register Here</a></p>
     </div>
 </body>
 </html>

@@ -1,26 +1,31 @@
 <?php
 include "config.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$name = $_POST['name'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$skill_offer = $_POST['skill_offer'];
+$skill_want = $_POST['skill_want'];
 
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $skill_offer = $_POST['skill_offer'];
-    $skill_want = $_POST['skill_want'];
 
-    if(empty($name) || empty($email) || empty($_POST['password'])){
-        echo "All fields required";
-        exit();
-    }
+// insert into users
+$sql1 = "INSERT INTO users (name, email,password)
+         VALUES ('$name', '$email','$password')";
 
-    $sql = "INSERT INTO users (name, email, password, skill_offer, skill_want)
-            VALUES ('$name', '$email', '$password', '$skill_offer', '$skill_want')";
+mysqli_query($conn, $sql1);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Registration successful";
-    } else {
-        echo "Error: " . $conn->error;
-    }
-}
+
+// get user id
+$user_id = mysqli_insert_id($conn);
+
+
+// insert into skills table
+$sql2 = "INSERT INTO skills (user_id, skill_offer, skill_want)
+         VALUES ('$user_id', '$skill_offer', '$skill_want')";
+
+mysqli_query($conn, $sql2);
+
+
+header("Location: ../dashboard.php?user_id=$user_id");
+
 ?>
